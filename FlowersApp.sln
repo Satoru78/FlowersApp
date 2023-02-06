@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32602.291
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowersApp", "FlowersApp\FlowersApp.csproj", "{384650B6-FE7C-4937-925C-91FC880FC131}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WedApiFlowers", "WedApiFlowers\WedApiFlowers.csproj", "{9554E94B-E055-4F6A-939E-2471445541F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{384650B6-FE7C-4937-925C-91FC880FC131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{384650B6-FE7C-4937-925C-91FC880FC131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{384650B6-FE7C-4937-925C-91FC880FC131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{384650B6-FE7C-4937-925C-91FC880FC131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9554E94B-E055-4F6A-939E-2471445541F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9554E94B-E055-4F6A-939E-2471445541F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9554E94B-E055-4F6A-939E-2471445541F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9554E94B-E055-4F6A-939E-2471445541F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B03B084-669A-49B5-A1CD-7B274EB00640}
+	EndGlobalSection
+EndGlobal

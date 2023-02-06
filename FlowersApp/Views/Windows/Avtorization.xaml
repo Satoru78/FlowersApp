@@ -1,0 +1,30 @@
+﻿<Window x:Class="FlowersApp.Avtorization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlowersApp"
+        mc:Ignorable="d"
+        Title="Avtorization" Height="400" Width="400">
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Авторизация:" FontSize="30"></TextBlock>
+            <TextBlock Text="Логин:"></TextBlock>
+            <TextBox Name="txbLogin"  Width="205"></TextBox>
+            <TextBlock Text="Пароль:"></TextBlock>
+            <TextBox Name="txbPassword"  Width="205"></TextBox>
+
+            <StackPanel Visibility="Collapsed" Name="CaptchaPanel">
+                <TextBlock x:Name="tblCaptcha" TextDecorations="Strikethrough" HorizontalAlignment="Center"/>
+                <TextBlock Text="Каптча" FontWeight="SemiBold"></TextBlock>
+                <TextBox Name="txbCaptcha"  Width="120" ></TextBox>
+                <Button Name="btnCaptcha" Content="Обновить" Click="btnCaptcha_Click" Width="100"></Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,10">
+                <Button Content="Войти" Name="LoginBtn" Click="LoginBtn_Click" Width="100" Margin="0,0,5,0"></Button>
+                <Button Content="Отмена" Name="CancelBtn" Click="CancelBtn_Click" Width="100"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
