@@ -5,10 +5,27 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FlowersApp.Views.Pages"
       mc:Ignorable="d" 
+      Loaded="Page_Loaded"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="UserListPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Content="Назад" Name="BackBtn" Width="100" Click="BackBtn_Click"></Button>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <DataGrid AutoGenerateColumns="False" Name="LoginList">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Пользователь" Binding="{Binding User.FirstName}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Время входа" Binding="{Binding LoginTime}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Количество попыток" Binding="{Binding ErrorCount}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Роль" Binding="{Binding Role.Title}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </Page>

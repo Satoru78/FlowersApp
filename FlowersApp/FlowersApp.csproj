@@ -92,6 +92,7 @@
     <Compile Include="Model\OrderStatus.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\PartialProduct.cs" />
     <Compile Include="Model\Product.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

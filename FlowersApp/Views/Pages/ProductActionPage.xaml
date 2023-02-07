@@ -9,6 +9,52 @@
       Title="ProductActionPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Height="200" Width="200" Name="Img" Source="{Binding Product.GetImage}"></Image>
+            <Button Content="Выбрать" Name="SelectPictureBtn" Click="SelectPictureBtn_Click"></Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Button Content="Назад" Name="BackBtn" Click="BackBtn_Click" Width="100" Margin="10"></Button>
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Артикул:"></TextBlock>
+                <TextBox  Width="200" Text="{Binding Product.Articul}"></TextBox>
+                
+                <TextBlock Text="Наименование:"></TextBlock>
+                <TextBox  Width="200" Text="{Binding Product.Title}"></TextBox>
+
+                <TextBlock Text="Ед.измерения"></TextBlock>
+                <TextBox Width="200" Text="{Binding Product.Unit}"></TextBox>
+
+                <TextBlock Text="Цена"></TextBlock>
+                <TextBox Width="200" Text="{Binding Product.Cost}"></TextBox>
+
+                <TextBlock Text="Скидка"></TextBlock>
+                <TextBox Width="200" Text="{Binding Product.Discount}"></TextBox>
+                
+                <TextBlock Text="Производитель"></TextBlock>
+                <TextBox Width="200" Text="{Binding Product.Manufacturer}"></TextBox>
+
+                <TextBlock Text="Поставщик"></TextBlock>
+                <TextBox Width="200" Text="{Binding Product.Supplier}"></TextBox>
+                
+                <TextBlock Text="Статус заказа"></TextBlock>
+                <ComboBox Width="200" SelectedItem="{Binding Product.ProductCategory}" ItemsSource="{Binding ProductCategories}" DisplayMemberPath="Title"></ComboBox>
+                
+                <TextBlock Text="Количество на складе"></TextBlock>
+                <TextBox Width="200" Text="{Binding Product.QuInStock}"></TextBox>
+
+                <TextBlock Text="Описание"></TextBlock>
+                <TextBox Width="200" Text="{Binding Product.Discription}"></TextBox>
+
+                <Button Content="Сохранить" Name="TxbSave" Click="TxbSave_Click" Margin="0,10"></Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

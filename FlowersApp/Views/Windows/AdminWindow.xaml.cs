@@ -29,6 +29,11 @@ namespace FlowersApp.Views.Windows
             this.User = user;
             AdminFrame.Navigate(new MainPageAdmin());
             tblNameUser.Text = $"Пользователь: {user.FirstName} {user.LastName}";
+            ProductData data = new ProductData(new Product());
+            if (user == null)
+            {
+                data.GridHid.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

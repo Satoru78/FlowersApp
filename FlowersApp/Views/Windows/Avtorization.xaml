@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Avtorization" Height="400" Width="400">
     <Grid>
+        <Frame Name="GostFrame" NavigationUIVisibility="Hidden"></Frame>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Авторизация:" FontSize="30"></TextBlock>
             <TextBlock Text="Логин:"></TextBlock>
@@ -25,6 +26,7 @@
                 <Button Content="Войти" Name="LoginBtn" Click="LoginBtn_Click" Width="100" Margin="0,0,5,0"></Button>
                 <Button Content="Отмена" Name="CancelBtn" Click="CancelBtn_Click" Width="100"></Button>
             </StackPanel>
+            <Button Name="btnGost" Content="Войти как гость" Click="btnGost_Click" KeyDown="btnGost_KeyDown"></Button>
         </StackPanel>
     </Grid>
 </Window>

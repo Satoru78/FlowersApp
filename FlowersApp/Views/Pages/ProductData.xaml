@@ -5,10 +5,64 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FlowersApp.Views.Pages"
       mc:Ignorable="d" 
+      Loaded="Page_Loaded"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProductData">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Content="Назад" Name="BtnBack" Click="BtnBack_Click" Width="100" Margin="5"></Button>
+            <Button Content="Сохранить" Name="BtnCsvSave" Click="BtnCsvSave_Click" Width="100" Margin="5"></Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="ПОИСК:" ></TextBlock>
+            <TextBox Name="txbSearchProduct" SelectionChanged="txbSearchProduct_SelectionChanged" Width="250" Height="20"></TextBox>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+            <ComboBox Name="cmbSearchCategory" SelectionChanged="cmbSearchCategory_SelectionChanged" Width="100" Margin="10">
+                <ComboBoxItem>Горшки</ComboBoxItem>
+                <ComboBoxItem>Букеты</ComboBoxItem>
+                <ComboBoxItem>В горшке</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+
+        <Grid Name="ProductDataView" Grid.Row="1" Grid.Column="1">
+            <ListView Name="ProductDataListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding GetImage}"  Grid.Column="0" Width="150" Height="150"></Image>
+                            <StackPanel Grid.Column="1">
+                                <Label Content="{Binding Description}" ContentStringFormat="Описание товара" ></Label>
+                                <Label Content="{Binding Manufacturer}" ContentStringFormat="Производитель:"></Label>
+                                <Label Content="{Binding Cost}" ContentStringFormat="Цена: {0}"></Label>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <Label Content="{Binding QuInStock}" ContentStringFormat="Кол-во на складе: {0}"></Label>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Grid Name="GridHid" Grid.Row="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Content="Добавить" Name="AddProductBtn" Click="AddProductBtn_Click" Width="200" Height="25"></Button>
+                <Button Content="Редактировать" Name="EditProductBtn" Click="EditProductBtn_Click" Width="200" Height="25" Margin="40,10,40,10"></Button>
+                <Button Content="Удалить" Name="DeleteProductBtn" Click="DeleteProductBtn_Click" Width="200" Height="25"></Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

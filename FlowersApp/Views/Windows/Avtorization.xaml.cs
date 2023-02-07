@@ -33,20 +33,19 @@ namespace FlowersApp
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Tick += timer_Tick;
         }
-
         private void timer_Tick(object sender, EventArgs e)
         {
+            Avtorization avtorization = new Avtorization();
             if (DateTime.Now <= TimeBlock)
             {
-                LoginBtn.IsEnabled = false;
+                avtorization.IsEnabled = false;
             }
             else
             {
-                LoginBtn.IsEnabled = true;
+                avtorization.IsEnabled = true;
                 timer.Stop();
             }
         }
-
         public string GenericCaptcha()
         {
             char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdifghijklmnopqrstuvwxyz#$%^&@123456789!".ToCharArray();
@@ -65,7 +64,6 @@ namespace FlowersApp
         {
             tblCaptcha.Text = GenericCaptcha();
         }
-
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -82,16 +80,19 @@ namespace FlowersApp
                     Data.db.SaveChanges();
                     AdminWindow adminWindow = new AdminWindow(currentUser);
                     adminWindow.ShowDialog();
-
                 }
                 else
                 {
                     MessageBox.Show("Пользователь не найден", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
                     count++;
+                    if (count == 1)
+                    {
+                    TimeBlock = DateTime.Now.AddSeconds(10);
+                    timer.Start();
                     CaptchaPanel.Visibility = Visibility.Visible;
                     tblCaptcha.Text = GenericCaptcha();
-                    timer.Start();
-                    TimeBlock = DateTime.Now.AddSeconds(10);
+                        
+                    }
                 }
             }
             catch (Exception ex)
@@ -103,6 +104,15 @@ namespace FlowersApp
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+        private void btnGost_Click(object sender, RoutedEventArgs e)
+        {
+            GostFrame.Navigate(new AdminWindow(new User()));
+        }
+
+        private void btnGost_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }
