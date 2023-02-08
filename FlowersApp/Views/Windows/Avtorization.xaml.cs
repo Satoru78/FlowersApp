@@ -33,19 +33,21 @@ namespace FlowersApp
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Tick += timer_Tick;
         }
+        ///Метод создания таймера
         private void timer_Tick(object sender, EventArgs e)
         {
-            Avtorization avtorization = new Avtorization();
+
             if (DateTime.Now <= TimeBlock)
             {
-                avtorization.IsEnabled = false;
+                LoginBtn.IsEnabled = false;
             }
             else
             {
-                avtorization.IsEnabled = true;
+                LoginBtn.IsEnabled = true;
                 timer.Stop();
             }
         }
+        ///Метод генерации каптчи
         public string GenericCaptcha()
         {
             char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdifghijklmnopqrstuvwxyz#$%^&@123456789!".ToCharArray();
@@ -60,10 +62,12 @@ namespace FlowersApp
 
             return word;
         }
+        ///Метод вывода каптчи на экран
         private void btnCaptcha_Click(object sender, RoutedEventArgs e)
         {
             tblCaptcha.Text = GenericCaptcha();
         }
+        ///Авторизация
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -78,21 +82,26 @@ namespace FlowersApp
                     LoginHistory.ErrorCount = count;
                     Data.db.LoginHistory.Add(LoginHistory);
                     Data.db.SaveChanges();
-                    AdminWindow adminWindow = new AdminWindow(currentUser);
-                    adminWindow.ShowDialog();
+
+
+                    MainWindow mainWindow = new MainWindow(currentUser);
+                    mainWindow.ShowDialog();
+
+
+
                 }
                 else
                 {
                     MessageBox.Show("Пользователь не найден", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
                     count++;
-                    if (count == 1)
-                    {
-                    TimeBlock = DateTime.Now.AddSeconds(10);
-                    timer.Start();
+                    //if (count == 1)
+                    //{
                     CaptchaPanel.Visibility = Visibility.Visible;
                     tblCaptcha.Text = GenericCaptcha();
-                        
-                    }
+                    timer.Start();
+                    TimeBlock = DateTime.Now.AddSeconds(10);
+
+                    //}
                 }
             }
             catch (Exception ex)
@@ -100,14 +109,16 @@ namespace FlowersApp
                 MessageBox.Show(ex.Message, "ошибка");
             }
         }
-
+        //Закрытие приложения
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
         private void btnGost_Click(object sender, RoutedEventArgs e)
         {
-            GostFrame.Navigate(new AdminWindow(new User()));
+            //GostFrame.Navigate(new MainWindow(new User()));
+            MainWindow mainWindow = new MainWindow(new User());
+            mainWindow.ShowDialog();
         }
 
         private void btnGost_KeyDown(object sender, KeyEventArgs e)

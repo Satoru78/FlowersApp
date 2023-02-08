@@ -23,7 +23,6 @@
                     <DataGridTextColumn Header="Пользователь" Binding="{Binding User.FirstName}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Время входа" Binding="{Binding LoginTime}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Количество попыток" Binding="{Binding ErrorCount}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Роль" Binding="{Binding Role.Title}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

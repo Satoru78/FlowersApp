@@ -31,12 +31,12 @@ namespace FlowersApp.Views.Pages
             InitializeComponent();
             this.LoginHistory = loginHistory;
         }
-
+        //Кнопка возврата назад
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
         }
-
+        //Загрузка данных на страницу
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             LoginHistories = Data.db.LoginHistory.ToList();

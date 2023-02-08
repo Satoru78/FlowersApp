@@ -24,13 +24,17 @@ namespace FlowersApp.Views.Pages
     /// </summary>
     public partial class ProductActionPage : Page
     {
-        public List<ProductCategory> ProductCategories { get; set; }
+        public List<ProductCategory> ProductCategorys { get; set; }
         public Product Product { get; set; }
+    
         public ProductActionPage(Product product)
         {
             InitializeComponent();
+            Product = product;
+            ProductCategorys = Data.db.ProductCategory.ToList();
+            this.DataContext = this;
         }
-
+        //Сохранение данных
         private void TxbSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -51,12 +55,12 @@ namespace FlowersApp.Views.Pages
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-
+        //Кнопка возврата назад
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
         }
-
+        //Кнопка выбора изображения и фильтр
         private void SelectPictureBtn_Click(object sender, RoutedEventArgs e)
         {
             img.Filter = "Image (*.jpg;*.jpeg;*.png;) |  *.jpg; *.jpeg; *.png";

@@ -9,6 +9,10 @@
       Title="MainPageAdmin">
 
     <Grid>
-        
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Name="ProductList" Click="ProductList_Click" Content="Продукты" Width="200">
+            </Button>
+            <Button Content="История входа" Name="btnUserList" Click="btnUserList_Click" Margin="0,5"/>
+        </StackPanel>
     </Grid>
 </Page>

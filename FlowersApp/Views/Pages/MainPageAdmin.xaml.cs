@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlowersApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,24 @@ namespace FlowersApp.Views.Pages
     /// </summary>
     public partial class MainPageAdmin : Page
     {
+        public User User { get; set; }
         public MainPageAdmin()
         {
             InitializeComponent();
+            if (User == null)
+            {
+                btnUserList.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ProductList_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ProductData(new Model.Product()));
+        }
+
+        private void btnUserList_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new UserListPage(new Model.LoginHistory()));
         }
     }
 }

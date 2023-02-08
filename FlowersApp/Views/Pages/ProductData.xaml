@@ -44,7 +44,7 @@
 
                             <Image Source="{Binding GetImage}"  Grid.Column="0" Width="150" Height="150"></Image>
                             <StackPanel Grid.Column="1">
-                                <Label Content="{Binding Description}" ContentStringFormat="Описание товара" ></Label>
+                                <Label Content="{Binding Title}" ContentStringFormat="Описание товара" ></Label>
                                 <Label Content="{Binding Manufacturer}" ContentStringFormat="Производитель:"></Label>
                                 <Label Content="{Binding Cost}" ContentStringFormat="Цена: {0}"></Label>
                             </StackPanel>

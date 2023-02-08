@@ -23,16 +23,21 @@ namespace FlowersApp.Views.Pages
     /// </summary>
     public partial class ProductData : Page
     {
+        public User User { get; set; }
         public ProductCategory ProductCategory { get; set; }
         public List<Product> Products { get; set; }
         public Product Product { get; set; }
         public ProductData(Product product)
         {
             InitializeComponent();
-            Product = product;
+            Product = product;         
             this.DataContext = this;
+            if (User == null)
+            {
+               GridHid.Visibility = Visibility.Hidden;
+            }
         }
-
+        //Метод сохранения данных в csv
         private void BtnCsvSave_Click(object sender, RoutedEventArgs e)
         {
             using (FileStream stream = new FileStream(Environment.CurrentDirectory + @"Product_export", FileMode.Create))
@@ -49,23 +54,23 @@ namespace FlowersApp.Views.Pages
             }
             MessageBox.Show($"Сохранение прошло успешно, проверьте файл здесь: {Environment.CurrentDirectory}", "Сохранено", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
+        //Кнопка возврата назад
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
         }
-
+        //Метод поиска продукции
         private void txbSearchProduct_SelectionChanged(object sender, RoutedEventArgs e)
         {
             ProductDataListView.ItemsSource = Data.db.Product.Where(item => item.Title.Contains(txbSearchProduct.Text) || item.Articul.ToString().Contains(txbSearchProduct.Text)
             || item.Manufacturer.Contains(txbSearchProduct.Text)).ToList();
         }
-
+        
         private void cmbSearchCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Category((cmbSearchCategory.SelectedItem as ComboBoxItem).Content.ToString(), cmbSearchCategory.Text);
         }
-
+        //Метолд для осуществления сортировки по следующим запросам
         private void Category(string type = "", string search = "")
         {
             var products = Data.db.Product.ToList();
@@ -73,15 +78,15 @@ namespace FlowersApp.Views.Pages
             {
                 if (type == "Горшки")
                 {
-                    products = products.Where(item => item.ProductCategory.Title == "Серьги").ToList();
+                    products = products.Where(item => item.ProductCategory.Title == "Горшки").ToList();
                 }
                 if (type == "Букеты")
                 {
-                    products = products.Where(item => item.ProductCategory.Title == "Подвеска").ToList();
+                    products = products.Where(item => item.ProductCategory.Title == "Букеты").ToList();
                 }
                 if (type == "В горшке")
                 {
-                    products = products.Where(item => item.ProductCategory.Title == "Ожерелье").ToList();
+                    products = products.Where(item => item.ProductCategory.Title == "В горшке").ToList();
                 }            
                 if (type == "Все")
                 {
@@ -90,13 +95,13 @@ namespace FlowersApp.Views.Pages
             }
             ProductDataListView.ItemsSource = products;
         }
-
+        //Переход на страницу добавления товара
         private void AddProductBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ProductActionPage(new Model.Product()));
 
         }
-
+        //Переход на страницу редактирвания товара
         private void EditProductBtn_Click(object sender, RoutedEventArgs e)
         {
             var selectedItem = (Product)ProductDataListView.SelectedItem;
@@ -105,7 +110,7 @@ namespace FlowersApp.Views.Pages
                 NavigationService.Navigate(new ProductActionPage(selectedItem));
             }
         }
-
+        //Удаление товара
         private void DeleteProductBtn_Click(object sender, RoutedEventArgs e)
         {
             var selectedItem = (Product)ProductDataListView.SelectedItem;
@@ -117,7 +122,7 @@ namespace FlowersApp.Views.Pages
             }
             MessageBox.Show("Данные удалены", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
+        //Загрузка данных в страницу
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Products = Data.db.Product.ToList();

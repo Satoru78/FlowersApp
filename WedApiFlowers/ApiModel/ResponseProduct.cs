@@ -30,7 +30,7 @@ namespace WedApiFlowers.ApiModel
         public string Articul { get; set; }
         public string Title { get; set; }
         public string Unit { get; set; }
-        public decimal Cost { get; set; }
+        public int Cost { get; set; }
         public int Discount { get; set; }
         public string Manufacturer { get; set; }
         public string Supplier { get; set; }
